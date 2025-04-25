@@ -8,8 +8,13 @@ class Entraineur
 {
     private: 
     string nom; 
-    Pokemon list_Pokemon[5];
+    vector<Pokemon> list_Pokemon[5];
 
     public:
-    
+    Entraineur(string n, Pokemon listP[]);
+    string getNom();
+    Pokemon getList();
+    int getNbPokemon();
+
+
 }

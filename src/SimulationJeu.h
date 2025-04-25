@@ -8,5 +8,5 @@ class SimulationJeu
     private:
   
 
-    private:
-}
+    public:
+};

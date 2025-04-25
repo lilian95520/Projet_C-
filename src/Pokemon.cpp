@@ -4,13 +4,13 @@
 #include "Pokemon.h"
 using namespace std;
 
-Pokemon::Pokemon(const string n, const vector<string> t, int h, const string att, const int puiss):
+Pokemon::Pokemon(const string& n, const vector<Type>& t, int h, const string& att, const int puiss):
 nom(n), type(t), hp(h), attaque(att), puissance(puiss){}
 
 void Pokemon::attaquer(Pokemon* cible)
 {
     cout<<nom<<"utilise "<< attaque<<endl;
-    cible->subirdegat(type[0], puissance)
+    cible->subirdegat(type[0].getNom(), puissance);
 
 }
 void Pokemon::subirdegat(const string& typeattaque, int degat)
@@ -25,12 +25,13 @@ void Pokemon::subirdegat(const string& typeattaque, int degat)
 }
 string Pokemon::getNom()
 {
+    return nom;
 
 }
 
 int Pokemon::getHp()
 {
-
+    return hp;
 }
     
 

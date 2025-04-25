@@ -1,8 +1,10 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
 #include "Type.h"
+using namespace std;
+
 class Pokemon
 {
     private: 
@@ -14,7 +16,7 @@ class Pokemon
     
 
     public: 
-    Pokemon(const string n, const vector<string> t, int h, const string att, const int puiss);
+    Pokemon(const string& n, const vector<Type>& t, int h, const string& att, const int puiss);
     void attaquer(Pokemon* cible);
     void subirdegat(const string& typeattaque, int degat);
     string getNom();

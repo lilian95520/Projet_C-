@@ -12,5 +12,10 @@ class Joueur :public Entraineur
     int nbcombat_perdu;
     vector<string> badge;
 
-    private:
+    public:
+    Joueur(string nom);
+    void AjouterBadge();
+    void EnregistrerVictoire(); 
+    void EnregistrerDefaite(); 
+    void AfficherStat();
 }

@@ -10,5 +10,8 @@ class LeaderGymm :public Entraineur
     string badge;
     string gymnase;
 
-    private:
+    public:
+    LeaderGym(string nom, string b, string gym);
+    string getBadge();
+    string getGymnase();
 }
