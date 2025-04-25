@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    Type* feu= new Type("feu", "eau", "métal");
+    Type feu ("feu", "eau", "métal");
     vector<Type> type={feu};
     Pokemon* Pokemon1=new Pokemon("Salameche", type, 40, "boule de feu", 40);
     cout<<Pokemon1->getNom()<<"a "<< Pokemon1->getHp()<< endl;

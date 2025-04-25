@@ -5,7 +5,7 @@
 using namespace std;
 
 
-Type::Type (const string& n, const vector<string> faible, const vector<string> resis):
+Type::Type (const string& n, const string faible, const string resis):
 nom(n), faiblesse(faible), resistance(resis){}
 
 float Type::getMultiContre(string typeattaque )
