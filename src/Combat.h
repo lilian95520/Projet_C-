@@ -12,8 +12,9 @@ class Combat
     int nbtour;
 
     public:
-    Combat(Entraineur j, Entraineur ad,int nombretour);
+    Combat(Entraineur& j, Entraineur& ad, int nombretour);
+    
     void DemarrerCombat();
     
 
-}
+};

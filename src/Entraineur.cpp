@@ -4,20 +4,25 @@
 #include "Entraineur.h"
 using namespace std;
 
-Entraineur::Entraineur(string n, vector<Pokemon> listP[]):
-nom(n),  list_Pokemon(listP){}
+Entraineur::Entraineur(string n, vector<Pokemon*> e): 
+nom(n),equipe(e){}
 
+Entraineur:: Entraineur(string n): nom(n){}
 string Entraineur::getNom()
 {
     return nom;
 }
-    
-vector<Pokemon> Entraineur::getList()
+
+void Entraineur::ajouterPokemon(Pokemon* p) {
+    equipe.push_back(p);
+}
+
+vector<Pokemon*> Entraineur::getEquipe()
 {
-    return list_Pokemon;
+    return equipe;
 }
 
 int Entraineur::getNbPokemon()
 {
-    return list_Pokemon.size();
+    return equipe.size();
 }

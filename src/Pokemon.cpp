@@ -9,17 +9,21 @@ nom(n), type(t), hp(h), attaque(att), puissance(puiss){}
 
 void Pokemon::attaquer(Pokemon* cible)
 {
-    cout<<nom<<"utilise "<< attaque<<endl;
+    cout<<nom<<" utilise "<< attaque<<endl;
     cible->subirdegat(type[0].getNom(), puissance);
 
 }
 void Pokemon::subirdegat(const string& typeattaque, int degat)
 {
     hp=hp-degat; 
-    if(hp<=0)
+    if(hp>0)
     {
-        cout<<nom<<"subit"<< degat<<"degat. Hp restant : "<<hp<<endl;
+        cout<<nom<<" subit "<< degat<<" degat. Hp restant : "<<hp<<endl;
 
+    }
+    else {
+        cout<<nom<< " subit "<< degat<<" degat. Hp restant : "<<hp<<endl;
+        cout<<nom<< " est mort "<< endl;
     }
 
 }

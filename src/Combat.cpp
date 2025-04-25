@@ -2,8 +2,8 @@
 using namespace std;
 #include "Combat.h"
 
-Combat::Combat(Entraineur j, Entraineur ad):
-joueur(j), adversaire(ad), nbtour(0){}
+Combat::Combat(Entraineur& j, Entraineur& ad, int nombretour)
+    : joueur(j), adversaire(ad), nbtour(nombretour) {}
 
 void Combat:: DemarrerCombat()
 {
