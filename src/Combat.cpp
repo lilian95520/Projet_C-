@@ -10,6 +10,11 @@ void Combat:: DemarrerCombat()
     int indexJoueur=0;
     int indexad=0;
     bool combatTerminer=false;
+
+    while (combatTerminer == false)
+    {
+        
+    }
     
 
 
