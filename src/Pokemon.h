@@ -21,6 +21,8 @@ class Pokemon
     void subirdegat(const string& typeattaque, int degat);
     string getNom();
     int getHp();
+    string getAttaqueType();
+    int getAttaqueDegat();
 
 
 };

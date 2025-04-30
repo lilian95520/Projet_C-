@@ -6,7 +6,7 @@
 using namespace std;
 
 Joueur::Joueur(string nom):
-Entraineur(nom), nbbadge(0), nbcombat_gagne(0), nbcombat_perdu(0), badge(""){}
+Entraineur(nom), nbbadge(0), nbcombat_gagne(0), nbcombat_perdu(0), badge(){}
 
 void Joueur::AjouterBadge()
 {

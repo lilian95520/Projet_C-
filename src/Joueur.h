@@ -18,4 +18,5 @@ class Joueur :public Entraineur
     void EnregistrerVictoire(); 
     void EnregistrerDefaite(); 
     void AfficherStat();
+    
 };

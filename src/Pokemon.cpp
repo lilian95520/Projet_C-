@@ -38,4 +38,14 @@ int Pokemon::getHp()
     return hp;
 }
     
+string Pokemon::getAttaqueType()
+{
+    return type[0].getNom();
+}
+
+int Pokemon::getAttaqueDegat()
+{
+    return puissance;
+}
+
 

@@ -8,14 +8,16 @@ class Type
 {
     private: 
     string nom; 
-    string faiblesse; 
-    string resistance;
+    vector<string> faiblesse; 
+    vector<string> resistance;
+
 
     public: 
     Type()=default; 
-    Type(const string& n, const string faible, const string resis);
+    Type(const string& n, const vector<string> faible, const vector<string> resis);
     string getNom();
-    float getMultiContre(string typeattaque );
+    float getMultiContre(string typeattaque);
+    
     
 
 
