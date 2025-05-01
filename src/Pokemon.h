@@ -17,12 +17,15 @@ class Pokemon
 
     public: 
     Pokemon(const string& n, const vector<Type>& t, int h, const string& att, const int puiss);
-    void attaquer(Pokemon* cible);
+    void afficher() const;
+    void attaquer(Pokemon* cible,float coeff);
     void subirdegat(const string& typeattaque, int degat);
-    string getNom();
+    string getNom() const;
     int getHp();
     string getAttaqueType();
     int getAttaqueDegat();
+    vector<Type> getTypes() const;
+
 
 
 };

@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 #include "Entraineur.h"
+#include "Pokemon.h"
+
 using namespace std;
 
 Entraineur::Entraineur(string n, vector<Pokemon*> e): 

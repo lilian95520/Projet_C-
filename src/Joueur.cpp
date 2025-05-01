@@ -5,23 +5,23 @@
 #include "Joueur.h"
 using namespace std;
 
-Joueur::Joueur(string nom):
-Entraineur(nom), nbbadge(0), nbcombat_gagne(0), nbcombat_perdu(0), badge(){}
+Joueur::Joueur(const std::string& nom, const std::vector<Pokemon*>& equipe)
+    : Entraineur(nom, equipe), nbBadges(0), nbCombatGagne(0), nbCombatPerdu(0) {}
 
 void Joueur::AjouterBadge()
 {
-    nbbadge++;
+    nbBadges++;
 
 }
 void Joueur::EnregistrerVictoire()
 {
-    nbcombat_gagne++;
+    nbCombatGagne++;
 }
 void Joueur::EnregistrerDefaite()
 {
-    nbcombat_perdu++;
+    nbCombatPerdu++;
 }
 void Joueur::AfficherStat()
 {
-    cout<<nom<<" a fait: "<< nbcombat_gagne <<" victoire et "<< nbcombat_perdu << " défaite"<<endl;
+    cout<<nom<<" a fait: "<< nbCombatGagne <<" victoire et "<< nbCombatPerdu << " defaite"<<endl;
 }

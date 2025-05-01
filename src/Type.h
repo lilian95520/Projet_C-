@@ -15,7 +15,7 @@ class Type
     public: 
     Type()=default; 
     Type(const string& n, const vector<string> faible, const vector<string> resis);
-    string getNom();
+    string getNom() const;
     float getMultiContre(string typeattaque);
     
     

@@ -7,13 +7,12 @@ using namespace std;
 class Joueur :public Entraineur
 {
     private:
-    int nbbadge;
-    int nbcombat_gagne;
-    int nbcombat_perdu;
-    vector<string> badge;
+    int nbBadges;
+    int nbCombatGagne;
+    int nbCombatPerdu;
 
     public:
-    Joueur(string nom);
+    Joueur(const string& nom, const vector<Pokemon*>& equipe = {});
     void AjouterBadge();
     void EnregistrerVictoire(); 
     void EnregistrerDefaite(); 

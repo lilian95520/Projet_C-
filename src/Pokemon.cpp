@@ -7,10 +7,10 @@ using namespace std;
 Pokemon::Pokemon(const string& n, const vector<Type>& t, int h, const string& att, const int puiss):
 nom(n), type(t), hp(h), attaque(att), puissance(puiss){}
 
-void Pokemon::attaquer(Pokemon* cible)
+void Pokemon::attaquer(Pokemon* cible,float coeff)
 {
     cout<<nom<<" utilise "<< attaque<<endl;
-    cible->subirdegat(type[0].getNom(), puissance);
+    cible->subirdegat(type[0].getNom(), puissance*coeff);
 
 }
 void Pokemon::subirdegat(const string& typeattaque, int degat)
@@ -27,7 +27,7 @@ void Pokemon::subirdegat(const string& typeattaque, int degat)
     }
 
 }
-string Pokemon::getNom()
+string Pokemon::getNom() const
 {
     return nom;
 
@@ -47,5 +47,16 @@ int Pokemon::getAttaqueDegat()
 {
     return puissance;
 }
+vector<Type> Pokemon::getTypes() const {
+    return type;
+}
 
-
+void Pokemon::afficher() const {
+    cout << "Pokemon: " << nom
+              << " | HP: " << hp
+              << " | Type: ";
+    for (const auto& t : type)
+        cout << t.getNom() << " ";
+    cout << "| Attaque: " << attaque
+              << " (" << puissance << " dmg)" << std::endl;
+}

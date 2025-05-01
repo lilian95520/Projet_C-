@@ -23,7 +23,7 @@ float Type::getMultiContre(string typeattaque )
     
 };
 
-string Type::getNom()
+string Type::getNom() const
 {
     return nom;
 }
