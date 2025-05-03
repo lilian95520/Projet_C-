@@ -3,17 +3,18 @@
 #pragma once
 #include <vector>
 #include "Entraineur.h"
+#include "Joueur.h"
 using namespace std;
 
 class Combat
 {
     private:
-    Entraineur& joueur;
+    Joueur& joueur;
     Entraineur& adversaire;
     int nbtour;
 
     public:
-    Combat(Entraineur& j, Entraineur& ad);
+    Combat(Joueur& j, Entraineur& ad);
     
     void DemarrerCombat();
     

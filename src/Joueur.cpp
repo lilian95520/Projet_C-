@@ -25,3 +25,6 @@ void Joueur::AfficherStat()
 {
     cout<<nom<<" a fait: "<< nbCombatGagne <<" victoire et "<< nbCombatPerdu << " defaite"<<endl;
 }
+int Joueur::GetNbBadge(){
+    return nbBadges;
+}

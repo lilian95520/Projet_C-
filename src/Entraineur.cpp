@@ -28,3 +28,22 @@ int Entraineur::getNbPokemon()
 {
     return equipe.size();
 }
+float Entraineur::bonusDegats() const {
+    return 1.0f;
+}
+
+void Entraineur::afficherEquipe() {
+    std::cout << "Équipe de " << nom << " :" << std::endl;
+    if (equipe.empty()) {
+        std::cout << "  (aucun Pokémon)" << std::endl;
+        return;
+    }
+    for (size_t i = 0; i < equipe.size(); ++i) {
+        Pokemon* p = equipe[i];
+        std::cout << "  " << (i + 1) << ". ";
+        // On peut soit afficher le nom et les PV :
+        std::cout << p->getNom() << " (HP: " << p->getHp() << ")" << std::endl;
+        // — ou appeler p->afficher() pour plus de détails :
+        // p->afficher();
+    }
+}

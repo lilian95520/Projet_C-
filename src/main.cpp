@@ -1,59 +1,59 @@
 #include <iostream>
-#include <string>
-#include <vector>
-#include "Pokemon.h"
-#include "Entraineur.h"
+#include <windows.h>  // uniquement sous Windows
+
 #include "CSVLoader.h"
-#include "Joueur.h"
-#include "LeaderGym.h"
-#include "Combat.h"
+#include "SimulationJeu.h"
 
-using namespace std;
+int main() {
+    SetConsoleOutputCP(CP_UTF8);
+    // 1) Charger les types
+    auto types = chargerTypesDepuisCSV("data/types.csv");
+    std::cout << "Types charges : " << types.size() << std::endl;
 
-int main()
-{
-    
-    // //vector<Type> type={feu};
-    // //Pokemon* Salameche =new Pokemon("Salameche", type, 40, "boule de feu", 40);
-    // cout<<Salameche->getNom()<<" a "<< Salameche->getHp()<< endl;
-    // Pokemon* Bulbizare =new Pokemon("Bulbizare", type, 60, "herbe", 40);
-    // cout<<Bulbizare->getNom()<<" a "<< Bulbizare->getHp()<< endl;
-    // Bulbizare->attaquer(Salameche);
-    // Entraineur Paul ("Paul");
-    // cout<<Paul.getNom()<< endl;
-    // cout<<Paul.getNbPokemon()<< endl;
-    // Paul.ajouterPokemon(Salameche);
-    // cout<<Paul.getNbPokemon()<< endl;
-    // delete Salameche;
-    // delete Bulbizare;
+    // 2) Charger tous les Pokemon
+    auto allPokemons = chargerPokemonsDepuisCSV("data/pokemon.csv", types);
+    std::cout << "Pokemons charges : " << allPokemons.size() << "\n";
+    for (auto* p : allPokemons) {
+        p->afficher();
+    }
+    std::cout << std::endl;
 
-    auto types=chargerTypesDepuisCSV("Donnees/types.csv");
-    // for(const auto& pair:types)
-    // {
-    //     string nom=pair.first;
-    //     Type type=pair.second;
-    //     cout<<"_"<<nom<<endl;
-    // }
-    Type feu("Feu", {"Eau"}, {"Plante"});
-    Type eau("Eau", {"Verbe"}, {"Feu"});
+    // 3) Charger les joueurs
+    auto joueurs = chargerJoueursDepuisCSV("data/joueur.csv", allPokemons);
+    std::cout << "Joueurs charges : " << joueurs.size() << "\n";
+    for (auto& j : joueurs) {
+        j.afficherEquipe();
+    }
+    std::cout << std::endl;
 
-    string cyble="Feu";
-    //float mult=types[cyble].getMultiContre(attaque);
-    //cout<<mult<<endl;
-    Pokemon salameche("Salameche", {feu}, 50, "Flammeche", 30);
-    Pokemon carapuce("Carapuce", {eau}, 50, "Pistolet a O", 30);
+    // 4) Charger les leaders
+    auto leaders = chargerLeadersDepuisCSV("data/leaders.csv", allPokemons);
+    std::cout << "Leaders charges : " << leaders.size() << "\n";
+    for (auto& lg : leaders) {
+        lg.afficherEquipe();
+    }
+    std::cout << std::endl;
 
-    //vector<Pokemon*> equipeJ = { salameche,carapuce};
-    Joueur sacha("Sacha");
-    sacha.ajouterPokemon(&salameche);
-    LeaderGym Lilian("Lilian","badge","test");
-    Lilian.ajouterPokemon(&carapuce);
-    Combat combat(sacha,Lilian);
-    combat.DemarrerCombat();
-    
+    // 5) Charger les maîtres
+    auto maitres = chargerMaitresDepuisCSV("data/maitres.csv", allPokemons);
+    std::cout << "Maîtres chargés : " << maitres.size() << "\n";
+    for (auto& m : maitres) {
+        m.afficherEquipe();
+    }
+    std::cout << std::endl;
+
+    // 6) Lancer la simulation avec le premier joueur
+    if (!joueurs.empty()) {
+        std::cout << "Démarrage de la simulation pour le joueur : " 
+                  << joueurs[0].getNom() << "\n\n";
+        SimulationJeu sim(joueurs[0], leaders, maitres);
+        sim.lancer();
+    } else {
+        std::cerr << "Aucun joueur chargé, fin du programme.\n";
+    }
+
+    // 7) Nettoyage mémoire (optionnel pour un test rapide)
+    for (auto* p : allPokemons) delete p;
 
     return 0;
-
-
 }
- 

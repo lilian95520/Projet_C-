@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <vector>
@@ -16,6 +17,7 @@ class Joueur :public Entraineur
     void AjouterBadge();
     void EnregistrerVictoire(); 
     void EnregistrerDefaite(); 
+    int GetNbBadge();
     void AfficherStat();
     
 };

@@ -19,6 +19,7 @@ class Entraineur
     vector<Pokemon*> getEquipe();
     int getNbPokemon();
     void afficherEquipe();
+    virtual float bonusDegats() const ;
 
 
 
