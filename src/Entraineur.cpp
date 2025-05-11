@@ -3,7 +3,7 @@
 #include <vector>
 #include "Entraineur.h"
 #include "Pokemon.h"
-
+#include <algorithm>
 using namespace std;
 
 Entraineur::Entraineur(string n, vector<Pokemon*> e): 
@@ -33,17 +33,20 @@ float Entraineur::bonusDegats() const {
 }
 
 void Entraineur::afficherEquipe() {
-    std::cout << "Équipe de " << nom << " :" << std::endl;
+    cout << "Équipe de " << nom << " :" << endl;
     if (equipe.empty()) {
-        std::cout << "  (aucun Pokémon)" << std::endl;
+        cout << "  (aucun Pokémon)" << endl;
         return;
     }
     for (size_t i = 0; i < equipe.size(); ++i) {
         Pokemon* p = equipe[i];
-        std::cout << "  " << (i + 1) << ". ";
-        // On peut soit afficher le nom et les PV :
-        std::cout << p->getNom() << " (HP: " << p->getHp() << ")" << std::endl;
-        // — ou appeler p->afficher() pour plus de détails :
-        // p->afficher();
+        cout << "  " << (i + 1) << ". ";
+        cout << p->getNom() << " (HP: " << p->getHp() << ")" << endl;
     }
+
+}
+void Entraineur::changerOrdre(int idx1,int idx2){
+    swap(equipe[idx1],equipe[idx2]);
+    cout << "Echange des pokémons positions "<< (idx1+1) << " et " << (idx2+1) << ".\n";
+    
 }

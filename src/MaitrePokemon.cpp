@@ -1,6 +1,6 @@
 #include "MaitrePokemon.h"
 
-MaitrePokemon::MaitrePokemon(const std::string& nom, const std::vector<Pokemon*>& equipe)
+MaitrePokemon::MaitrePokemon(const string& nom, const vector<Pokemon*>& equipe)
     : Entraineur(nom, equipe)
 {}
 

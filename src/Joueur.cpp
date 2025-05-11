@@ -5,7 +5,7 @@
 #include "Joueur.h"
 using namespace std;
 
-Joueur::Joueur(const std::string& nom, const std::vector<Pokemon*>& equipe)
+Joueur::Joueur(const string& nom, const vector<Pokemon*>& equipe)
     : Entraineur(nom, equipe), nbBadges(0), nbCombatGagne(0), nbCombatPerdu(0) {}
 
 void Joueur::AjouterBadge()

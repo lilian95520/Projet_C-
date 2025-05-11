@@ -13,10 +13,10 @@ class LeaderGym :public Entraineur
 
     public:
     LeaderGym(string nom, string b, string gym);
-    LeaderGym(const std::string& nom,
-        const std::string& badge,
-        const std::string& gymnase,
-        const std::vector<Pokemon*>& equipe);
+    LeaderGym(const string& nom,
+        const string& badge,
+        const string& gymnase,
+        const vector<Pokemon*>& equipe);
     string getBadge();
     string getGymnase();
 };

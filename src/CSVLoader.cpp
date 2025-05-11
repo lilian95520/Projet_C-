@@ -2,73 +2,72 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include <algorithm>  // std::find
+#include <algorithm>  
+using namespace std;
 
 // --- split (pour types.csv) ---
-std::vector<std::string> split(const std::string& s, char delim) {
-    std::vector<std::string> tokens;
-    std::stringstream ss(s);
-    std::string item;
-    while (std::getline(ss, item, delim)) {
+vector<string> split(const string& s, char delim) {
+    vector<string> tokens;
+    stringstream ss(s);
+    string item;
+    while (getline(ss, item, delim)) {
         if (!item.empty()) tokens.push_back(item);
     }
     return tokens;
 }
 
 // --- types.csv (inchangé) ---
-std::map<std::string, Type> chargerTypesDepuisCSV(const std::string& chemin) {
-    std::map<std::string, Type> result;
-    std::ifstream file(chemin);
+map<string, Type> chargerTypesDepuisCSV(const string& chemin) {
+    map<string, Type> result;
+    ifstream file(chemin);
     if (!file.is_open()) {
-        std::cerr << "Erreur : impossibe d'ouvrir " << chemin << std::endl;
-        return result;
+        throw ios_base::failure("Impossible d'ouvrir " + chemin);       
     }
-    std::string ligne;
-    std::getline(file, ligne); // entête
-    while (std::getline(file, ligne)) {
-        std::stringstream ss(ligne);
-        std::string nom, faib, res;
-        std::getline(ss, nom, ',');
-        std::getline(ss, faib, ',');
-        std::getline(ss, res, ',');
+    string ligne;
+    getline(file, ligne); 
+    while (getline(file, ligne)) {
+        stringstream ss(ligne);
+        string nom, faib, res;
+        getline(ss, nom, ',');
+        getline(ss, faib, ',');
+        getline(ss, res, ',');
         result[nom] = Type(nom, split(faib, '|'), split(res, '|'));
     }
     return result;
 }
 
 // --- pokemon.csv ---
-std::vector<Pokemon*> chargerPokemonsDepuisCSV(
-    const std::string& chemin,
-    const std::map<std::string, Type>& typesConnus
+vector<Pokemon*> chargerPokemonsDepuisCSV(
+    const string& chemin,
+    const map<string, Type>& typesConnus
 ) {
-    std::vector<Pokemon*> result;
-    std::ifstream file(chemin);
+    vector<Pokemon*> result;
+    ifstream file(chemin);
     if (!file.is_open()) {
-        std::cerr << "Erreur : impossible d'ouvrir " << chemin << std::endl;
-        return result;
+        throw ios_base::failure("Impossible d'ouvrir " + chemin);        
     }
-    std::string ligne;
-    std::getline(file, ligne); // entête
-    while (std::getline(file, ligne)) {
-        std::stringstream ss(ligne);
-        std::string nom, t1, t2, hpStr, attNom, dmgStr;
-        std::getline(ss, nom, ',');
-        std::getline(ss, t1, ',');
-        std::getline(ss, t2, ',');
-        std::getline(ss, hpStr, ',');
-        std::getline(ss, attNom, ',');
-        std::getline(ss, dmgStr, ',');
+    string ligne;
+    getline(file, ligne); // entête
+    while (getline(file, ligne)) {
+        stringstream ss(ligne);
+        string nom, t1, t2, hpStr, attNom, dmgStr;
+        getline(ss, nom, ',');
+        getline(ss, t1, ',');
+        getline(ss, t2, ',');
+        getline(ss, hpStr, ',');
+        getline(ss, attNom, ',');
+        getline(ss, dmgStr, ',');
 
-        int hp = std::stoi(hpStr);
-        int dmg = std::stoi(dmgStr);
+        int hp = stoi(hpStr);
+        int dmg = stoi(dmgStr);
 
         // construire le vecteur<Type>
-        std::vector<Type> types;
+        vector<Type> types;
         if (!t1.empty() && typesConnus.count(t1)) types.push_back(typesConnus.at(t1));
         if (!t2.empty() && typesConnus.count(t2)) types.push_back(typesConnus.at(t2));
 
         // le type de l'attaque = premier type, ou string vide si absent
-        std::string attType = types.empty() ? std::string{} : types.front().getNom();
+        string attType = types.empty() ? string{} : types.front().getNom();
 
         result.push_back(new Pokemon(nom, types, hp, attNom, dmg));
     }
@@ -76,35 +75,34 @@ std::vector<Pokemon*> chargerPokemonsDepuisCSV(
 }
 
 // --- utilitaire : map nom→Pokemon* pour lookup rapide ---
-static std::map<std::string, Pokemon*> buildPokemonMap(const std::vector<Pokemon*>& v) {
-    std::map<std::string, Pokemon*> m;
+static map<string, Pokemon*> buildPokemonMap(const vector<Pokemon*>& v) {
+    map<string, Pokemon*> m;
     for (auto* p : v) m[p->getNom()] = p;
     return m;
 }
 
 // --- joueur.csv ---
-std::vector<Joueur> chargerJoueursDepuisCSV(
-    const std::string& chemin,
-    const std::vector<Pokemon*>& tousLesPokemons
+vector<Joueur> chargerJoueursDepuisCSV(
+    const string& chemin,
+    const vector<Pokemon*>& tousLesPokemons
 ) {
     auto mapP = buildPokemonMap(tousLesPokemons);
-    std::vector<Joueur> result;
-    std::ifstream file(chemin);
+    vector<Joueur> result;
+    ifstream file(chemin);
     if (!file.is_open()) {
-        std::cerr << "Erreur : impossible d'ouvrir " << chemin << std::endl;
-        return result;
+        throw ios_base::failure("Impossible d'ouvrir " + chemin);        
     }
-    std::string ligne;
-    std::getline(file, ligne); // entête
-    while (std::getline(file, ligne)) {
-        std::stringstream ss(ligne);
-        std::string nom;
-        std::vector<Pokemon*> equipe;
-        std::getline(ss, nom, ',');
+    string ligne;
+    getline(file, ligne); // entête
+    while (getline(file, ligne)) {
+        stringstream ss(ligne);
+        string nom;
+        vector<Pokemon*> equipe;
+        getline(ss, nom, ',');
         // 6 colonnes Pokémon
         for (int i = 0; i < 6; ++i) {
-            std::string poke;
-            std::getline(ss, poke, ',');
+            string poke;
+            getline(ss, poke, ',');
             if (!poke.empty() && mapP.count(poke))
                 equipe.push_back(mapP[poke]);
         }
@@ -114,29 +112,28 @@ std::vector<Joueur> chargerJoueursDepuisCSV(
 }
 
 // --- leaders.csv ---
-std::vector<LeaderGym> chargerLeadersDepuisCSV(
-    const std::string& chemin,
-    const std::vector<Pokemon*>& tousLesPokemons
+vector<LeaderGym> chargerLeadersDepuisCSV(
+    const string& chemin,
+    const vector<Pokemon*>& tousLesPokemons
 ) {
     auto mapP = buildPokemonMap(tousLesPokemons);
-    std::vector<LeaderGym> result;
-    std::ifstream file(chemin);
+    vector<LeaderGym> result;
+    ifstream file(chemin);
     if (!file.is_open()) {
-        std::cerr << "Erreur : impossible d'ouvrir " << chemin << std::endl;
-        return result;
+        throw ios_base::failure("Impossible d'ouvrir " + chemin);        
     }
-    std::string ligne;
-    std::getline(file, ligne); // entête
-    while (std::getline(file, ligne)) {
-        std::stringstream ss(ligne);
-        std::string nom, gym, medaille;
-        std::vector<Pokemon*> equipe;
-        std::getline(ss, nom, ',');
-        std::getline(ss, gym, ',');
-        std::getline(ss, medaille, ',');
+    string ligne;
+    getline(file, ligne); // entête
+    while (getline(file, ligne)) {
+        stringstream ss(ligne);
+        string nom, gym, medaille;
+        vector<Pokemon*> equipe;
+        getline(ss, nom, ',');
+        getline(ss, gym, ',');
+        getline(ss, medaille, ',');
         for (int i = 0; i < 6; ++i) {
-            std::string poke;
-            std::getline(ss, poke, ',');
+            string poke;
+            getline(ss, poke, ',');
             if (!poke.empty() && mapP.count(poke))
                 equipe.push_back(mapP[poke]);
         }
@@ -146,27 +143,26 @@ std::vector<LeaderGym> chargerLeadersDepuisCSV(
 }
 
 // --- maitres.csv ---
-std::vector<MaitrePokemon> chargerMaitresDepuisCSV(
-    const std::string& chemin,
-    const std::vector<Pokemon*>& tousLesPokemons
+vector<MaitrePokemon> chargerMaitresDepuisCSV(
+    const string& chemin,
+    const vector<Pokemon*>& tousLesPokemons
 ) {
     auto mapP = buildPokemonMap(tousLesPokemons);
-    std::vector<MaitrePokemon> result;
-    std::ifstream file(chemin);
+    vector<MaitrePokemon> result;
+    ifstream file(chemin);
     if (!file.is_open()) {
-        std::cerr << "Erreur : impossible d'ouvrir " << chemin << std::endl;
-        return result;
+        throw ios_base::failure("Impossible d'ouvrir " + chemin);        
     }
-    std::string ligne;
-    std::getline(file, ligne); // entête
-    while (std::getline(file, ligne)) {
-        std::stringstream ss(ligne);
-        std::string nom;
-        std::vector<Pokemon*> equipe;
-        std::getline(ss, nom, ',');
+    string ligne;
+    getline(file, ligne); 
+    while (getline(file, ligne)) {
+        stringstream ss(ligne);
+        string nom;
+        vector<Pokemon*> equipe;
+        getline(ss, nom, ',');
         for (int i = 0; i < 6; ++i) {
-            std::string poke;
-            std::getline(ss, poke, ',');
+            string poke;
+            getline(ss, poke, ',');
             if (!poke.empty() && mapP.count(poke))
                 equipe.push_back(mapP[poke]);
         }

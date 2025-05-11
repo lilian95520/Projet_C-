@@ -8,11 +8,11 @@ using namespace std;
 LeaderGym::LeaderGym(string nom, string b, string gym):
 Entraineur(nom), badge(b), gymnase(gym){}
 
-LeaderGym::LeaderGym(const std::string& nom,
-    const std::string& b,
-    const std::string& g,
-    const std::vector<Pokemon*>& equipe)
-: Entraineur(nom, equipe),  // initialise le vecteur<Pokemon*> de la classe de base
+LeaderGym::LeaderGym(const string& nom,
+    const string& b,
+    const string& g,
+    const vector<Pokemon*>& equipe)
+: Entraineur(nom, equipe),  
 badge(b),
 gymnase(g)
 {}

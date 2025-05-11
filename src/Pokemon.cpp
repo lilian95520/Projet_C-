@@ -53,7 +53,7 @@ vector<Type> Pokemon::getTypes() const {
 
 void Pokemon::soigner() {
     hp = maxHp;
-    std::cout << nom << " est soigné ! PV restaurés à " << hp << " / " << maxHp << ".\n";
+    cout << nom << " est soigné ! PV restaurés à " << hp << " / " << maxHp << ".\n";
 }
 
 void Pokemon::afficher() const {
@@ -63,5 +63,5 @@ void Pokemon::afficher() const {
     for (const auto& t : type)
         cout << t.getNom() << " ";
     cout << "| Attaque: " << attaque
-              << " (" << puissance << " dmg)" << std::endl;
+              << " (" << puissance << " dmg)" << endl;
 }

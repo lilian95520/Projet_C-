@@ -8,37 +8,34 @@
 #include "Joueur.h"
 #include "LeaderGym.h"
 #include "MaitrePokemon.h"
+using namespace std;
 
 // découpe une string "a|b|c" en {"a","b","c"} (utilisé pour types.csv)
-std::vector<std::string> split(const std::string& s, char delim);
+vector<string> split(const string& s, char delim);
 
 // charge data/types.csv
-std::map<std::string, Type> chargerTypesDepuisCSV(const std::string& chemin);
+map<string, Type> chargerTypesDepuisCSV(const string& chemin);
 
 // charge data/pokemon.csv
-// nom,Type 1,Type 2,Points de Vie,Attaque,Dégâts d'Attaque
-std::vector<Pokemon*> chargerPokemonsDepuisCSV(
-    const std::string& chemin,
-    const std::map<std::string, Type>& typesConnus
+vector<Pokemon*> chargerPokemonsDepuisCSV(
+    const string& chemin,
+    const map<string, Type>& typesConnus
 );
 
 // charge data/joueur.csv
-// Nom,Pokemon1,Pokemon2,...,Pokemon6
-std::vector<Joueur> chargerJoueursDepuisCSV(
-    const std::string& chemin,
-    const std::vector<Pokemon*>& tousLesPokemons
+vector<Joueur> chargerJoueursDepuisCSV(
+    const string& chemin,
+    const vector<Pokemon*>& tousLesPokemons
 );
 
 // charge data/leaders.csv
-// Nom,Gymnase,Medaille,Pokemon1,...,Pokemon6
-std::vector<LeaderGym> chargerLeadersDepuisCSV(
-    const std::string& chemin,
-    const std::vector<Pokemon*>& tousLesPokemons
+vector<LeaderGym> chargerLeadersDepuisCSV(
+    const string& chemin,
+    const vector<Pokemon*>& tousLesPokemons
 );
 
 // charge data/maitres.csv
-// Nom,Pokemon1,...,Pokemon6
-std::vector<MaitrePokemon> chargerMaitresDepuisCSV(
-    const std::string& chemin,
-    const std::vector<Pokemon*>& tousLesPokemons
+vector<MaitrePokemon> chargerMaitresDepuisCSV(
+    const string& chemin,
+    const vector<Pokemon*>& tousLesPokemons
 );
