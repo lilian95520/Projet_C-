@@ -16,7 +16,12 @@ void Combat::DemarrerCombat()
         cout << "╔═══════════════ Combat Pokémon ═══════════════╗\n";
         int indexJoueur = 0;
         int indexad = 0;
-    
+        auto skipFaint = [&](Entraineur& e, int& idx) {
+            while (idx < e.getNbPokemon() && e.getEquipe()[idx]->getHp() <= 0) {
+                ++idx;
+            }
+        };
+        skipFaint(joueur,     indexJoueur);
         while (indexJoueur < joueur.getNbPokemon() && indexad < adversaire.getNbPokemon()) {
             Pokemon* pJ = joueur.getEquipe()[indexJoueur];
             Pokemon* pA = adversaire.getEquipe()[indexad];
@@ -37,7 +42,7 @@ void Combat::DemarrerCombat()
                 } else {
                     cout << adversaire.getNom() << " envoie un nouveau Pokemon !\n";
                     cout << "\n────────────────────────────────────────\n\n";
-
+                    Sleep(3000);
 
                     continue; 
                 }
@@ -59,6 +64,7 @@ void Combat::DemarrerCombat()
                     break;
                 } else {
                     cout << joueur.getNom() << " envoie un nouveau Pokemon !\n";
+                    Sleep(3000);
                 }
             }
             cout << "\n────────────────────────────────────────\n\n";
