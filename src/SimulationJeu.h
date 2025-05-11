@@ -24,4 +24,5 @@ private:
     void afficherStats() const;
     void defierGym();
     void defierMaitre();
+    void soignerEquipe();
 };

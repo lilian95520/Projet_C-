@@ -25,7 +25,8 @@ void SimulationJeu::afficherMenu() const {
               << "1) Afficher mes Pokemon\n"
               << "2) Voir mes stats\n"
               << "3) Affronter un Leader de Gym\n"
-              << "4) Affronter un Maitre Pokemon\n"
+              << "4) Affronter un Maitre Pokémon\n"
+              << "5) Soigner tous mes Pokémon\n"
               << "0) Quitter\n";
 }
 
@@ -35,6 +36,7 @@ void SimulationJeu::choisirOption(int choix) {
         case 2: afficherStats();    break;
         case 3: defierGym();        break;
         case 4: defierMaitre();     break;
+        case 5: soignerEquipe();
         case 0: std::cout << "Au revoir !\n"; break;
         default: std::cout << "Option invalide.\n"; 
     }
@@ -64,6 +66,13 @@ void SimulationJeu::defierGym() {
     }
 }
 
+void SimulationJeu::soignerEquipe() {
+    std::cout << "\n-- Soins de l'équipe de " << joueur.getNom() << " --\n";
+    for (Pokemon* p : joueur.getEquipe()) {
+        p->soigner();
+    }
+    std::cout << "Tous les Pokémon sont en pleine forme !\n";
+}
 void SimulationJeu::defierMaitre() {
     if (joueur.GetNbBadge() < (int)leaders.size()) {
         std::cout << "Vous n'avez pas encore tous les badges.\n";

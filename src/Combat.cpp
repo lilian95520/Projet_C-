@@ -14,9 +14,6 @@ void Combat::DemarrerCombat()
         int indexad = 0;
     
         while (indexJoueur < joueur.getNbPokemon() && indexad < adversaire.getNbPokemon()) {
-            cout<<adversaire.getNbPokemon()<<endl;
-            cout<<"index"<<indexJoueur<<endl;
-            cout<<indexad<<endl;
             Pokemon* pJ = joueur.getEquipe()[indexJoueur];
             Pokemon* pA = adversaire.getEquipe()[indexad];
     
@@ -56,13 +53,11 @@ void Combat::DemarrerCombat()
                     break;
                 } else {
                     std::cout << joueur.getNom() << " envoie un nouveau Pokemon !\n";
-                    cout<<indexJoueur<<endl;
                 }
             }
     
             nbtour++;
         }
-        cout<<"sorti"<<endl;
     }
     
 

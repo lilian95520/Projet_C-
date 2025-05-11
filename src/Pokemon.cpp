@@ -5,7 +5,7 @@
 using namespace std;
 
 Pokemon::Pokemon(const string& n, const vector<Type>& t, int h, const string& att, const int puiss):
-nom(n), type(t), hp(h), attaque(att), puissance(puiss){}
+nom(n), type(t), hp(h),maxHp(h), attaque(att), puissance(puiss){}
 
 void Pokemon::attaquer(Pokemon* cible,float coeff)
 {
@@ -49,6 +49,11 @@ int Pokemon::getAttaqueDegat()
 }
 vector<Type> Pokemon::getTypes() const {
     return type;
+}
+
+void Pokemon::soigner() {
+    hp = maxHp;
+    std::cout << nom << " est soigné ! PV restaurés à " << hp << " / " << maxHp << ".\n";
 }
 
 void Pokemon::afficher() const {
