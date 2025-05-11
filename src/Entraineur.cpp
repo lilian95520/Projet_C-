@@ -50,3 +50,7 @@ void Entraineur::changerOrdre(int idx1,int idx2){
     cout << "Echange des pokémons positions "<< (idx1+1) << " et " << (idx2+1) << ".\n";
     
 }
+
+void Entraineur::interagir() {
+    cout << nom << " te félicite pour ce combat !\n";
+}

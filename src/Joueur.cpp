@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "Joueur.h"
+#include <windows.h>
 using namespace std;
 
 Joueur::Joueur(const string& nom, const vector<Pokemon*>& equipe)
@@ -27,4 +28,26 @@ void Joueur::AfficherStat()
 }
 int Joueur::GetNbBadge(){
     return nbBadges;
+}
+void Joueur::ajouterVaincu(Entraineur* e) {
+    vaincus.push_back(e);
+}
+
+void Joueur::interagir() {
+    system("cls");
+    std::cout << "\n-- Interagir --\n";
+    int idx = 1;
+    for (auto* p : equipe)
+        std::cout << idx++ << ") " << p->getNom() << " (Pokémon)\n";
+    for (auto* e : vaincus)
+        std::cout << idx++ << ") " << e->getNom() << " (Entraîneur)\n";
+    std::cout << "0) Retour\nChoix > ";
+
+    int choix; std::cin >> choix;
+    if (choix > 0 && choix <= (int)equipe.size())
+        equipe[choix-1]->interagir();
+    else if (choix > (int)equipe.size() && choix < idx)
+        vaincus[choix-1 - equipe.size()]->interagir();
+    Sleep(5000);
+    system("cls");
 }

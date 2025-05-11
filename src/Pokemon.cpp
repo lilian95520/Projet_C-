@@ -2,11 +2,21 @@
 #include <string>
 #include <vector>
 #include "Pokemon.h"
+#include <map>
+
 using namespace std;
 
 Pokemon::Pokemon(const string& n, const vector<Type>& t, int h, const string& att, const int puiss):
 nom(n), type(t), hp(h),maxHp(h), attaque(att), puissance(puiss){}
 
+static const map<string, string> messagesInteraction = {
+    { "Salamèche",   "Salamèche flamboie et lance quelques étincelles ! 🔥" },
+    { "Carapuce",    "Carapuce sort sa tête et te salue d'un sourire ! 🐢" },
+    { "Bulbizarre",  "Bulbizarre gambade joyeusement dans l'herbe ! 🌿" },
+    { "Pikachu",     "Pikachu te fait un petit saut et dit \"Pika Pika\" ! ⚡️" },
+    { "Évoli",       "Évoli tourne autour de toi avec curiosité ! ✨" },
+    { "Mew",      "Mewtwo ferme les yeux et t'envoie une onde psychique apaisante ! 🧠" },
+};
 void Pokemon::attaquer(Pokemon* cible,float coeff)
 {
     cout<<nom<<" utilise "<< attaque<<endl;
@@ -64,4 +74,13 @@ void Pokemon::afficher() const {
         cout << t.getNom() << " ";
     cout << "| Attaque: " << attaque
               << " (" << puissance << " dmg)" << endl;
+}
+
+void Pokemon::interagir() {
+    auto it = messagesInteraction.find(nom);
+    if (it != messagesInteraction.end()) {
+        cout << it->second << std::endl;
+    } else {
+        cout << nom << " te regarde avec curiosité." << endl;
+    }
 }

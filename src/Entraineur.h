@@ -3,9 +3,11 @@
 #include <string>
 #include <vector>
 #include "Pokemon.h"
+#include "Interagir.h"
+
 using namespace std;
 
-class Entraineur
+class Entraineur : public Interagir
 {
     protected: 
     string nom; 
@@ -21,6 +23,7 @@ class Entraineur
     void afficherEquipe();
     void changerOrdre(int idx1, int idx2);
     virtual float bonusDegats() const ;
+    void interagir() override;
 
 
 

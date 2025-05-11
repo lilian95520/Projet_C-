@@ -2,6 +2,8 @@
 #include <iostream>
 #include "Combat.h"
 #include <limits>
+#include <windows.h>
+
 using namespace std;
 
 SimulationJeu::SimulationJeu(Joueur& j,
@@ -11,51 +13,61 @@ SimulationJeu::SimulationJeu(Joueur& j,
 {}
 
 void SimulationJeu::lancer() {
+    system("cls");
     int choix = 0;
     do {
         afficherMenu();
         cout << "Votre choix > ";
         cin >> choix;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         choisirOption(choix);
     } while (choix != 0);
 }
 
 void SimulationJeu::afficherMenu() const {
-    cout << "\n=== MENU PRINCIPAL ===\n"
-              << "1) Afficher mes Pokemon\n"
-              << "2) Changer l'ordre des Pokémon\n"
-              << "3) Voir mes stats\n"
-              << "4) Affronter un Leader de Gym\n"
-              << "5) Affronter un Maitre Pokémon\n"
-              << "6) Soigner tous mes Pokémon\n"
-              << "0) Quitter\n";
+    std::cout << "╔═════════════ Menu Principal ═════════════╗\n";
+    std::cout << "║ 1) Afficher mes Pokémon                  ║\n";
+    std::cout << "║ 2) Soigner mon équipe                    ║\n";
+    std::cout << "║ 3) Changer ordre Pokémon                 ║\n";
+    std::cout << "║ 4) Afficher Stat                         ║\n";
+    std::cout << "║ 5) Affronter un Leader de Gym            ║\n";
+    std::cout << "║ 6) Affronter un Maître Pokémon           ║\n";
+    std::cout << "║ 7) Interagir                             ║\n";
+    std::cout << "║ 0) Quitter                               ║\n";
+    std::cout << "╚══════════════════════════════════════════╝\n";
 }
 
 void SimulationJeu::choisirOption(int choix) {
     switch (choix) {
         case 1: afficherPokemons(); break;
-        case 2: changerOrdrePokemon(); break;
-        case 3: afficherStats();    break;
-        case 4: defierGym();        break;
-        case 5: defierMaitre();     break;
-        case 6: soignerEquipe();
+        case 2: soignerEquipe(); break;
+        case 3: changerOrdrePokemon();    break;
+        case 4: afficherStats();        break;
+        case 5: defierGym();     break;
+        case 6: defierMaitre(); break;
+        case 7: joueur.interagir();break;
         case 0: cout << "Au revoir !\n"; break;
         default: cout << "Option invalide.\n"; 
     }
 }
 
 void SimulationJeu::afficherPokemons() const {
+    system("cls");
     cout << "\n-- Vos Pokemon --\n";
     joueur.afficherEquipe();
+    Sleep(10000);
+    system("cls");
 }
 
 void SimulationJeu::afficherStats() const {
+    system("cls");
     cout << "\n-- Vos Statistiques --\n";
     joueur.AfficherStat();
+    Sleep(10000);
+    system("cls");
 }
 
 void SimulationJeu::defierGym() {
+    system("cls");
     cout << "\nChoisissez un Leader de Gym :\n";
     for (size_t i = 0; i < leaders.size(); ++i) {
         cout << i+1 << ") " << leaders[i].getNom()
@@ -70,15 +82,20 @@ void SimulationJeu::defierGym() {
 }
 
 void SimulationJeu::soignerEquipe() {
+    system("cls");
     cout << "\n-- Soins de l'équipe de " << joueur.getNom() << " --\n";
     for (Pokemon* p : joueur.getEquipe()) {
         p->soigner();
     }
     cout << "Tous les Pokémon sont en pleine forme !\n";
+    Sleep(10000);
+    system("cls");
 }
 void SimulationJeu::defierMaitre() {
     if (joueur.GetNbBadge() < (int)leaders.size()) {
         cout << "Vous n'avez pas encore tous les badges.\n";
+        Sleep(5000);
+        system("cls");
         return;
     }
     
@@ -89,6 +106,7 @@ void SimulationJeu::defierMaitre() {
 }
 
 void SimulationJeu::changerOrdrePokemon(){
+    system("cls");
     const auto liste = joueur.getEquipe();  
     for (size_t i = 0; i < liste.size(); ++i)
         cout << (i+1) << ") " << liste[i]->getNom() << "\n";
@@ -97,6 +115,8 @@ void SimulationJeu::changerOrdrePokemon(){
     int a, b;
     cin >> a >> b;
     joueur.changerOrdre(a-1, b-1);
+    Sleep(10000);
+    system("cls");
 }
 
 

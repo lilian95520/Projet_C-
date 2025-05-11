@@ -131,7 +131,7 @@ vector<LeaderGym> chargerLeadersDepuisCSV(
         getline(ss, nom, ',');
         getline(ss, gym, ',');
         getline(ss, medaille, ',');
-        for (int i = 0; i < 6; ++i) {
+        for (int i = 0; i < 6; i++) {
             string poke;
             getline(ss, poke, ',');
             if (!poke.empty() && mapP.count(poke))

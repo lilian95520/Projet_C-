@@ -30,8 +30,9 @@ int main() {
         cerr << "Aucun joueur trouvé, arrêt du programme.\n";
         return EXIT_FAILURE;
     }
-    cout << "Démarrage de la simulation pour le joueur « "
-              << joueurs[0].getNom() << " »\n\n";
+
+    cout << "Démarrage de la simulation pour le joueur « "<< joueurs[0].getNom() << " »\n\n";
+    Sleep(5000);
     SimulationJeu sim(joueurs[0], leaders, maitres);
     sim.lancer();
 
@@ -39,7 +40,7 @@ int main() {
     for (Pokemon* p : allPokemons) {
         delete p;
     }
-
+    
     
 
     return 0;

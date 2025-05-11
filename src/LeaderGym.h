@@ -19,4 +19,5 @@ class LeaderGym :public Entraineur
         const vector<Pokemon*>& equipe);
     string getBadge();
     string getGymnase();
+    void interagir() override; 
 };

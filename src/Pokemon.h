@@ -3,9 +3,11 @@
 #include <string>
 #include <vector>
 #include "Type.h"
+#include "Interagir.h"
+
 using namespace std;
 
-class Pokemon
+class Pokemon : public Interagir
 {
     private: 
     string nom;
@@ -27,7 +29,6 @@ class Pokemon
     string getAttaqueType();
     int getAttaqueDegat();
     vector<Type> getTypes() const;
-
-
+    void interagir() override;
 
 };

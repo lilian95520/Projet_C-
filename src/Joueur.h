@@ -11,6 +11,7 @@ class Joueur :public Entraineur
     int nbBadges;
     int nbCombatGagne;
     int nbCombatPerdu;
+    vector<Entraineur*> vaincus;
 
     public:
     Joueur(const string& nom, const vector<Pokemon*>& equipe = {});
@@ -19,5 +20,7 @@ class Joueur :public Entraineur
     void EnregistrerDefaite(); 
     int GetNbBadge();
     void AfficherStat();
-    
+    void ajouterVaincu(Entraineur* e);
+    void interagir() override;
+
 };

@@ -4,6 +4,8 @@
 #include <vector>
 #include "Entraineur.h"
 #include "Joueur.h"
+
+
 using namespace std;
 
 class Combat
