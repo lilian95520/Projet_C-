@@ -18,10 +18,10 @@ void Combat::DemarrerCombat()
         int indexad = 0;
         auto skipFaint = [&](Entraineur& e, int& idx) {
             while (idx < e.getNbPokemon() && e.getEquipe()[idx]->getHp() <= 0) {
-                ++idx;
+                idx++;
             }
         };
-        skipFaint(joueur,     indexJoueur);
+        skipFaint(joueur,indexJoueur);
         while (indexJoueur < joueur.getNbPokemon() && indexad < adversaire.getNbPokemon()) {
             Pokemon* pJ = joueur.getEquipe()[indexJoueur];
             Pokemon* pA = adversaire.getEquipe()[indexad];

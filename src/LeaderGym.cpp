@@ -35,8 +35,8 @@ string LeaderGym::getGymnase()
 void LeaderGym::interagir() {
     auto it = messagesLeader.find(nom);
     if (it != messagesLeader.end()) {
-        cout << it->second << std::endl;
+        cout << it->second << endl;
     } else {
-        cout << nom << " te félicite  pour ta victoire !" << std::endl;
+        cout << nom << " te félicite  pour ta victoire !" << endl;
     }
 }

@@ -24,16 +24,16 @@ void SimulationJeu::lancer() {
 }
 
 void SimulationJeu::afficherMenu() const {
-    std::cout << "╔═════════════ Menu Principal ═════════════╗\n";
-    std::cout << "║ 1) Afficher mes Pokémon                  ║\n";
-    std::cout << "║ 2) Soigner mon équipe                    ║\n";
-    std::cout << "║ 3) Changer ordre Pokémon                 ║\n";
-    std::cout << "║ 4) Afficher Stat                         ║\n";
-    std::cout << "║ 5) Affronter un Leader de Gym            ║\n";
-    std::cout << "║ 6) Affronter un Maître Pokémon           ║\n";
-    std::cout << "║ 7) Interagir                             ║\n";
-    std::cout << "║ 0) Quitter                               ║\n";
-    std::cout << "╚══════════════════════════════════════════╝\n";
+    cout << "╔═════════════ Menu Principal ═════════════╗\n";
+    cout << "║ 1) Afficher mes Pokémon                  ║\n";
+    cout << "║ 2) Soigner mon équipe                    ║\n";
+    cout << "║ 3) Changer ordre Pokémon                 ║\n";
+    cout << "║ 4) Afficher Stat                         ║\n";
+    cout << "║ 5) Affronter un Leader de Gym            ║\n";
+    cout << "║ 6) Affronter un Maître Pokémon           ║\n";
+    cout << "║ 7) Interagir                             ║\n";
+    cout << "║ 0) Quitter                               ║\n";
+    cout << "╚══════════════════════════════════════════╝\n";
 }
 
 void SimulationJeu::choisirOption(int choix) {
@@ -54,7 +54,7 @@ void SimulationJeu::afficherPokemons() const {
     system("cls");
     cout << "\n-- Vos Pokemon --\n";
     joueur.afficherEquipe();
-    Sleep(10000);
+    Sleep(5000);
     system("cls");
 }
 
@@ -62,7 +62,7 @@ void SimulationJeu::afficherStats() const {
     system("cls");
     cout << "\n-- Vos Statistiques --\n";
     joueur.AfficherStat();
-    Sleep(10000);
+    Sleep(5000);
     system("cls");
 }
 
@@ -88,7 +88,7 @@ void SimulationJeu::soignerEquipe() {
         p->soigner();
     }
     cout << "Tous les Pokémon sont en pleine forme !\n";
-    Sleep(10000);
+    Sleep(5000);
     system("cls");
 }
 void SimulationJeu::defierMaitre() {
@@ -115,7 +115,7 @@ void SimulationJeu::changerOrdrePokemon(){
     int a, b;
     cin >> a >> b;
     joueur.changerOrdre(a-1, b-1);
-    Sleep(10000);
+    Sleep(5000);
     system("cls");
 }
 

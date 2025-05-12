@@ -47,7 +47,7 @@ vector<Pokemon*> chargerPokemonsDepuisCSV(
         throw ios_base::failure("Impossible d'ouvrir " + chemin);        
     }
     string ligne;
-    getline(file, ligne); // entête
+    getline(file, ligne); 
     while (getline(file, ligne)) {
         stringstream ss(ligne);
         string nom, t1, t2, hpStr, attNom, dmgStr;
@@ -61,12 +61,10 @@ vector<Pokemon*> chargerPokemonsDepuisCSV(
         int hp = stoi(hpStr);
         int dmg = stoi(dmgStr);
 
-        // construire le vecteur<Type>
         vector<Type> types;
         if (!t1.empty() && typesConnus.count(t1)) types.push_back(typesConnus.at(t1));
         if (!t2.empty() && typesConnus.count(t2)) types.push_back(typesConnus.at(t2));
 
-        // le type de l'attaque = premier type, ou string vide si absent
         string attType = types.empty() ? string{} : types.front().getNom();
 
         result.push_back(new Pokemon(nom, types, hp, attNom, dmg));

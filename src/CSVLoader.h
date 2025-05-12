@@ -10,7 +10,6 @@
 #include "MaitrePokemon.h"
 using namespace std;
 
-// découpe une string "a|b|c" en {"a","b","c"} (utilisé pour types.csv)
 vector<string> split(const string& s, char delim);
 
 // charge data/types.csv
